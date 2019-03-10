@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% block title%}
+<title>main/register</title>
+{%endblock%}
+
+{%block form%}
+<div class="boundary">
+	<form action="{{url_for('reg')}}" method="post" class="big">
+		<p class="info">아이디 : <input type="text" name="a" class="text" placeholder="아이디"></p>
+		<p class="info">비밀번호 : <input type="password" name="b" class="text"placeholder="비밀번호"></p>
+		<p class="info">이름 : <input type="text" name="c" class="text" placeholder="이름"></p>
+		<p class="info"><input type="submit" class="click" value="완료"></p>
+	</form>
+</div>
+{%endblock%}

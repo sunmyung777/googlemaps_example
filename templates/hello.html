@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block title %}
+<title>main/{{ name }}</title>
+{% endblock %}
+{% block form %}
+<div class="user">{{ name }}님 환영합니다</div>
+<a href="{{url_for('main')}}" class="logout">로그아웃</a>
+<form action="{{ url_for('data') }}" method="post">
+	<p><input class="text" type="text" name="place" placeholder="Searching for place..."></p>
+	<p><input type="submit" class="click" value="Search"></p>
+</form>
+{% endblock %}
