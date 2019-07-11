@@ -6,22 +6,23 @@ app=Flask(__name__)
 
 gmaps_key = "AIzaSyAptp_2asSdSdEe-s9ZYiu5kQ1f5rm40cM"
 gmaps = googlemaps.Client(key = gmaps_key)
-
+database_filename='C:/Users/user/Desktop/python/flask/db/hello.db'
 @app.route('/',methods=['GET','POST'])
 def main():
 	return render_template('main.html',message="")
 
 @app.route('/index',methods=['POST','GET'])
 def index():
-	database_filename='C:/Users/user/Desktop/python study/flask/db/hello.db'
 	conn = lite.connect(database_filename)
 	cs = conn.cursor()
 	idd=request.form['id']
 	pwd=request.form['pwd']
 	log_name=cs.execute("SELECT * FROM login;").fetchall()
+	print(log_name)
 	for x in log_name:
 		if(x[0]==idd and x[1]==pwd):
-			return render_template('hello.html',name=log_name[0][2])
+			print(x)
+			return render_template('hello.html',name=x[2])
 	cs.close()
 	conn.close()
 	return render_template('main.html',message="You've got the wrong id or password!!")
@@ -40,7 +41,7 @@ def data():
 		lng=temp_loc['location']['lng']
 		zoom=17
 	map=fo.Map(location=[lat,lng],zoom_start=zoom)
-	map.save('C:/Users/user/Desktop/python study/flask/templates/new.html')
+	map.save('C:/Users/user/Desktop/python/flask/templates/new.html')
 	return render_template('new.html')
 
 @app.route('/register')
@@ -49,7 +50,6 @@ def register():
 
 @app.route('/register/loading',methods=['POST'])
 def reg():
-	database_filename='C:/Users/user/Desktop/python study/flask/db/hello.db'
 	conn = lite.connect(database_filename)
 	cs = conn.cursor()
 	a=request.form['a']
@@ -62,4 +62,4 @@ def reg():
 	return render_template('complete.html')
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',debug=True)
+	app.run(debug=True)
