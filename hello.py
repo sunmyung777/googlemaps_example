@@ -4,7 +4,7 @@ import googlemaps
 import sqlite3 as lite
 app=Flask(__name__)
 
-gmaps_key = "AIzaSyAptp_2asSdSdEe-s9ZYiu5kQ1f5rm40cM"
+gmaps_key = "IJUSTCHANGEDTHISTOPREVENTHACKFROMOTHERS"
 gmaps = googlemaps.Client(key = gmaps_key)
 database_filename='C:/Users/user/Desktop/python/flask/db/hello.db'
 @app.route('/',methods=['GET','POST'])
